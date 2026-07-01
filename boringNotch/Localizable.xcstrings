@@ -451,7 +451,20 @@
         }
       }
     },
+    "%lld / %lld" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld / %2$lld"
+          }
+        }
+      }
+    },
     "%lld dBm" : {
+
+    },
+    "%lld today" : {
 
     },
     "%lld%%" : {
@@ -7006,6 +7019,9 @@
         }
       }
     },
+    "Daily goal" : {
+
+    },
     "Default" : {
       "localizations" : {
         "cs" : {
@@ -9706,6 +9722,9 @@
       }
     },
     "Focus" : {
+
+    },
+    "Focus sessions per day" : {
 
     },
     "Full charge" : {

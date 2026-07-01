@@ -51,9 +51,59 @@ final class PomodoroManager: ObservableObject {
     /// Number of completed focus sessions in the current cycle.
     @Published private(set) var completedWorkSessions: Int = 0
 
+    /// Focus sessions completed today and total focus minutes today.
+    @Published private(set) var completedToday: Int = 0
+    @Published private(set) var focusMinutesToday: Int = 0
+
     private var cancellable: AnyCancellable?
 
-    private init() {}
+    /// Day identifier (days since 1970) used to reset the daily stats.
+    private var todayKey: Int { Int(Date().timeIntervalSince1970 / 86400) }
+
+    private init() {
+        loadDailyStats()
+    }
+
+    // MARK: - Daily stats
+
+    private func loadDailyStats() {
+        if Defaults[.pomodoroStatsDay] == todayKey {
+            completedToday = Defaults[.pomodoroCompletedToday]
+            focusMinutesToday = Defaults[.pomodoroFocusMinutesToday]
+        } else {
+            Defaults[.pomodoroStatsDay] = todayKey
+            Defaults[.pomodoroCompletedToday] = 0
+            Defaults[.pomodoroFocusMinutesToday] = 0
+            completedToday = 0
+            focusMinutesToday = 0
+        }
+    }
+
+    private func recordCompletedFocus() {
+        if Defaults[.pomodoroStatsDay] != todayKey {
+            Defaults[.pomodoroStatsDay] = todayKey
+            completedToday = 0
+            focusMinutesToday = 0
+        }
+        completedToday += 1
+        focusMinutesToday += max(1, Defaults[.pomodoroWorkMinutes])
+        Defaults[.pomodoroCompletedToday] = completedToday
+        Defaults[.pomodoroFocusMinutesToday] = focusMinutesToday
+    }
+
+    var focusTimeTodayText: String {
+        let hours = focusMinutesToday / 60
+        let minutes = focusMinutesToday % 60
+        return hours > 0 ? "\(hours)h \(minutes)m" : "\(minutes)m"
+    }
+
+    var dailyGoal: Int { max(1, Defaults[.pomodoroDailyGoal]) }
+
+    var dailyGoalProgress: Double {
+        min(Double(completedToday) / Double(dailyGoal), 1)
+    }
+
+    var goalReached: Bool { completedToday >= dailyGoal }
 
     // MARK: - Derived values
 
@@ -146,6 +196,10 @@ final class PomodoroManager: ObservableObject {
         pause()
         if Defaults[.pomodoroPlaySound] {
             NSSound(named: "Glass")?.play()
+        }
+        // Only naturally-finished focus sessions count towards the daily stats.
+        if phase == .work {
+            recordCompletedFocus()
         }
         advancePhase()
         if Defaults[.pomodoroAutoStartNext] {

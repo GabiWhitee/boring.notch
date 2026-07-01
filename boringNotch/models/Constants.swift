@@ -356,6 +356,11 @@ extension Defaults.Keys {
     static let pomodoroSessionsBeforeLongBreak = Key<Int>("pomodoroSessionsBeforeLongBreak", default: 4)
     static let pomodoroAutoStartNext = Key<Bool>("pomodoroAutoStartNext", default: false)
     static let pomodoroPlaySound = Key<Bool>("pomodoroPlaySound", default: true)
+    static let pomodoroDailyGoal = Key<Int>("pomodoroDailyGoal", default: 8)
+    // Daily stats (reset automatically when the day changes)
+    static let pomodoroStatsDay = Key<Int>("pomodoroStatsDay", default: 0)
+    static let pomodoroCompletedToday = Key<Int>("pomodoroCompletedToday", default: 0)
+    static let pomodoroFocusMinutesToday = Key<Int>("pomodoroFocusMinutesToday", default: 0)
 
     // MARK: Weather
     static let showWeather = Key<Bool>("showWeather", default: false)

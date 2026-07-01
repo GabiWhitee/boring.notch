@@ -25,14 +25,50 @@ struct PomodoroView: View {
     }
 
     var body: some View {
-        HStack(spacing: 28) {
+        HStack(alignment: .center, spacing: 22) {
             timerRing
-            VStack(alignment: .leading, spacing: 14) {
+            VStack(spacing: 14) {
                 sessionDots
                 controls
             }
+            Spacer(minLength: 0)
+            VStack(alignment: .leading, spacing: 12) {
+                statsColumn
+                goalBar
+            }
         }
+        .padding(.horizontal, 24)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+    }
+
+    private var statsColumn: some View {
+        VStack(alignment: .leading, spacing: 6) {
+            Label("\(pomodoro.completedToday) today", systemImage: "checkmark.circle.fill")
+            Label(pomodoro.focusTimeTodayText + " focused", systemImage: "clock.fill")
+        }
+        .font(.system(size: 11, weight: .medium))
+        .foregroundStyle(.gray)
+    }
+
+    private var goalBar: some View {
+        VStack(alignment: .leading, spacing: 3) {
+            HStack(spacing: 4) {
+                Image(systemName: pomodoro.goalReached ? "checkmark.seal.fill" : "target")
+                    .font(.system(size: 9))
+                    .foregroundStyle(pomodoro.goalReached ? .green : .gray)
+                Text("Daily goal")
+                    .font(.system(size: 10, weight: .semibold))
+                    .foregroundStyle(.gray)
+                Spacer(minLength: 8)
+                Text("\(pomodoro.completedToday) / \(pomodoro.dailyGoal)")
+                    .font(.system(size: 10, weight: .medium))
+                    .foregroundStyle(pomodoro.goalReached ? .green : .white)
+            }
+            ProgressView(value: pomodoro.dailyGoalProgress)
+                .tint(pomodoro.goalReached ? .green : PomodoroPhase.work.accent)
+                .scaleEffect(x: 1, y: 0.7, anchor: .center)
+        }
+        .frame(width: 170)
     }
 
     private var timerRing: some View {
@@ -125,6 +161,7 @@ struct PomodoroSettings: View {
     @Default(.pomodoroShortBreakMinutes) var shortBreakMinutes
     @Default(.pomodoroLongBreakMinutes) var longBreakMinutes
     @Default(.pomodoroSessionsBeforeLongBreak) var sessionsBeforeLongBreak
+    @Default(.pomodoroDailyGoal) var dailyGoal
 
     var body: some View {
         Form {
@@ -148,6 +185,12 @@ struct PomodoroSettings: View {
                 }
                 Stepper(value: $sessionsBeforeLongBreak, in: 1...12) {
                     LabeledContent("Sessions before long break", value: "\(sessionsBeforeLongBreak)")
+                }
+            }
+
+            Section(header: Text("Daily goal")) {
+                Stepper(value: $dailyGoal, in: 1...20) {
+                    LabeledContent("Focus sessions per day", value: "\(dailyGoal)")
                 }
             }
 
