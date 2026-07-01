@@ -458,6 +458,12 @@ struct NotchHomeView: View {
 
             // Hide the extra widgets while the camera preview is open so the
             // notch doesn't get overcrowded (the camera is GPU-heavy on its own).
+            if Defaults[.showCountdown] && !shouldShowCamera {
+                CountdownView()
+                    .frame(width: 130)
+                    .transition(.opacity)
+            }
+
             if Defaults[.showWeather] && !shouldShowCamera {
                 WeatherView()
                     .frame(width: 150)

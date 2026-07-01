@@ -17,6 +17,7 @@ private enum SettingsTab: String, CaseIterable, Identifiable {
     case pomodoro
     case weather
     case dollar
+    case countdown
     case system
     case hardware
     case osd
@@ -38,6 +39,7 @@ private enum SettingsTab: String, CaseIterable, Identifiable {
         case .pomodoro: "Pomodoro"
         case .weather: "Weather"
         case .dollar: "Dólar"
+        case .countdown: "Countdown"
         case .system: "System"
         case .hardware: "Hardware"
         case .osd: "OSD"
@@ -59,6 +61,7 @@ private enum SettingsTab: String, CaseIterable, Identifiable {
         case .pomodoro: "timer"
         case .weather: "cloud.sun"
         case .dollar: "dollarsign.circle"
+        case .countdown: "calendar.badge.clock"
         case .system: "gauge.with.dots.needle.67percent"
         case .hardware: "laptopcomputer"
         case .osd: "dial.medium.fill"
@@ -111,6 +114,8 @@ struct SettingsView: View {
                     WeatherSettings()
                 case .dollar:
                     DollarSettings()
+                case .countdown:
+                    CountdownSettings()
                 case .system:
                     SystemSettings()
                 case .hardware:

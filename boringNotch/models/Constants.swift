@@ -374,6 +374,11 @@ extension Defaults.Keys {
     static let showDollar = Key<Bool>("showDollar", default: false)
     static let dollarType = Key<DollarType>("dollarType", default: .blue)
 
+    // MARK: Countdown
+    static let showCountdown = Key<Bool>("showCountdown", default: false)
+    static let countdownLabel = Key<String>("countdownLabel", default: "")
+    static let countdownDate = Key<Date>("countdownDate", default: Date())
+
     // MARK: Hardware tab
     static let enableHardwareTab = Key<Bool>("enableHardwareTab", default: true)
 

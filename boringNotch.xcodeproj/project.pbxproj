@@ -358,6 +358,7 @@
 		AA01F00D0000000000000003 /* Dollar */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Dollar; sourceTree = "<group>"; };
 		AA01F00D0000000000000004 /* System */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = System; sourceTree = "<group>"; };
 		AA01F00D0000000000000005 /* Hardware */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Hardware; sourceTree = "<group>"; };
+		AA01F00D0000000000000006 /* Countdown */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Countdown; sourceTree = "<group>"; };
 		11F748502EC9AABA00F841DB /* BoringNotchXPCHelper */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (11F7485C2EC9AABA00F841DB /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = BoringNotchXPCHelper; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
@@ -689,6 +690,7 @@
 				AA01F00D0000000000000003 /* Dollar */,
 				AA01F00D0000000000000004 /* System */,
 				AA01F00D0000000000000005 /* Hardware */,
+				AA01F00D0000000000000006 /* Countdown */,
 				11CC44A12CEE614100C7244B /* BoringViewCoordinator.swift */,
 			);
 			path = boringNotch;
@@ -899,6 +901,7 @@
 				AA01F00D0000000000000003 /* Dollar */,
 				AA01F00D0000000000000004 /* System */,
 				AA01F00D0000000000000005 /* Hardware */,
+				AA01F00D0000000000000006 /* Countdown */,
 			);
 			name = boringNotch;
 			packageProductDependencies = (

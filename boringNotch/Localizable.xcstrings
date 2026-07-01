@@ -6329,6 +6329,9 @@
         }
       }
     },
+    "Countdown" : {
+
+    },
     "CPU cores" : {
 
     },
@@ -7020,6 +7023,9 @@
       }
     },
     "Daily goal" : {
+
+    },
+    "Date" : {
 
     },
     "Default" : {
@@ -8120,6 +8126,9 @@
     "e.g. Buenos Aires" : {
 
     },
+    "e.g. Vacation" : {
+
+    },
     "Edit layout" : {
       "localizations" : {
         "cs" : {
@@ -9186,6 +9195,9 @@
           }
         }
       }
+    },
+    "Event" : {
+
     },
     "Expanded drag detection area" : {
       "localizations" : {
@@ -12098,6 +12110,9 @@
           }
         }
       }
+    },
+    "Label" : {
+
     },
     "Language" : {
       "localizations" : {
@@ -21324,6 +21339,9 @@
         }
       }
     },
+    "Show countdown in Home" : {
+
+    },
     "Show dollar quote in Home" : {
 
     },
@@ -22603,6 +22621,9 @@
 
     },
     "Shows the Argentine dollar rate next to the music player when the notch is open. Source: dolarapi.com" : {
+
+    },
+    "Shows the days remaining until a date, next to the calendar." : {
 
     },
     "Sin datos" : {
