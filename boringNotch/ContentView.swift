@@ -402,6 +402,19 @@ struct ContentView: View {
                         )
                     case .shelf:
                         ShelfView()
+                    case .pomodoro:
+                        PomodoroView()
+                    case .system:
+                        SystemView()
+                    case .calendar:
+                        MonthCalendarView()
+                            .environmentObject(vm)
+                            .onHover { hovering in
+                                vm.isHoveringCalendar = hovering
+                            }
+                    case .hardware:
+                        HardwareView()
+                            .environmentObject(vm)
                     }
                 }
                 .transition(

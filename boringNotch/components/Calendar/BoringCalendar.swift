@@ -794,3 +794,242 @@ struct ReminderToggle: View {
         .background(.black)
         .environmentObject(BoringViewModel())
 }
+
+// MARK: - Month grid view
+
+/// A full-month grid calendar used by the dedicated Calendar tab: a 7-column
+/// month on the left (with event dots) and the selected day's events on the right.
+struct MonthCalendarView: View {
+    @EnvironmentObject var vm: BoringViewModel
+    @ObservedObject private var calendarManager = CalendarManager.shared
+    @Default(.weekStartDay) private var weekStartDay
+    @Default(.hideCompletedReminders) private var hideCompletedReminders
+
+    @State private var displayedMonth = Date()
+    @State private var selectedDate = Date()
+    @State private var monthEvents: [EventModel] = []
+
+    private var calendar: Calendar {
+        var c = Calendar.current
+        c.firstWeekday = weekStartDay.firstWeekday
+        return c
+    }
+
+    var body: some View {
+        ScrollView(.vertical) {
+            HStack(alignment: .top, spacing: 14) {
+                gridColumn
+                    .frame(maxWidth: .infinity)
+                Divider()
+                    .overlay(Color.white.opacity(0.12))
+                eventsColumn
+                    .frame(width: 200)
+            }
+            .padding(.horizontal, 8)
+            .padding(.vertical, 8)
+        }
+        .scrollIndicators(.hidden)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .onAppear { resetToToday() }
+        .onChange(of: vm.notchState) { _, _ in resetToToday() }
+    }
+
+    // MARK: Grid
+
+    private var gridColumn: some View {
+        VStack(spacing: 3) {
+            monthHeader
+            weekdayHeader
+            let weeks = monthWeeks()
+            ForEach(0..<weeks.count, id: \.self) { row in
+                HStack(spacing: 0) {
+                    ForEach(0..<7, id: \.self) { col in
+                        dayCell(weeks[row][col])
+                    }
+                }
+            }
+        }
+    }
+
+    private var monthHeader: some View {
+        HStack {
+            Button { changeMonth(-1) } label: {
+                Image(systemName: "chevron.left")
+            }
+            .buttonStyle(.plain)
+            Spacer()
+            Text(displayedMonth.formatted(.dateTime.month(.wide).year()))
+                .font(.system(size: 14, weight: .semibold))
+                .foregroundStyle(.white)
+            Spacer()
+            Button { changeMonth(1) } label: {
+                Image(systemName: "chevron.right")
+            }
+            .buttonStyle(.plain)
+        }
+        .font(.system(size: 12, weight: .semibold))
+        .foregroundStyle(.gray)
+    }
+
+    private var weekdayHeader: some View {
+        HStack(spacing: 0) {
+            ForEach(Array(orderedWeekdaySymbols.enumerated()), id: \.offset) { _, symbol in
+                Text(symbol)
+                    .font(.system(size: 9, weight: .medium))
+                    .foregroundStyle(.gray)
+                    .frame(maxWidth: .infinity)
+            }
+        }
+    }
+
+    @ViewBuilder
+    private func dayCell(_ date: Date?) -> some View {
+        if let date {
+            let isToday = calendar.isDateInToday(date)
+            let isSelected = calendar.isDate(date, inSameDayAs: selectedDate)
+            Button {
+                selectedDate = date
+            } label: {
+                Text("\(calendar.component(.day, from: date))")
+                    .font(.system(size: 11, weight: isToday ? .bold : .regular))
+                    .foregroundStyle(isToday ? Color.black : .white.opacity(0.9))
+                    .frame(width: 20, height: 20)
+                    .background(
+                        Circle().fill(
+                            isToday ? Color.effectiveAccent
+                                : (isSelected ? Color.white.opacity(0.15) : Color.clear)
+                        )
+                        .frame(width: 19, height: 19)
+                    )
+                    .overlay(alignment: .bottom) {
+                        Circle()
+                            .fill(dayHasEvents(date) && !isToday ? Color.effectiveAccent : Color.clear)
+                            .frame(width: 3, height: 3)
+                    }
+            }
+            .buttonStyle(.plain)
+            .frame(maxWidth: .infinity)
+        } else {
+            Color.clear.frame(maxWidth: .infinity, minHeight: 20)
+        }
+    }
+
+    // MARK: Events column
+
+    private var eventsColumn: some View {
+        VStack(alignment: .leading, spacing: 6) {
+            Text(selectedDate.formatted(.dateTime.weekday(.wide).day().month(.abbreviated)))
+                .font(.system(size: 12, weight: .semibold))
+                .foregroundStyle(.white)
+
+            let dayEvents = eventsForSelectedDay()
+            if dayEvents.isEmpty {
+                EmptyEventsView(selectedDate: selectedDate)
+                    .frame(maxWidth: .infinity)
+                    .padding(.top, 20)
+            } else {
+                VStack(alignment: .leading, spacing: 6) {
+                    ForEach(dayEvents) { event in
+                        eventRow(event)
+                    }
+                }
+            }
+        }
+    }
+
+    private func eventRow(_ event: EventModel) -> some View {
+        HStack(spacing: 6) {
+            RoundedRectangle(cornerRadius: 2)
+                .fill(Color(nsColor: event.calendar.color))
+                .frame(width: 3, height: 26)
+            VStack(alignment: .leading, spacing: 1) {
+                Text(event.title)
+                    .font(.system(size: 11))
+                    .foregroundStyle(.white)
+                    .lineLimit(1)
+                Text(event.isAllDay
+                     ? "All day"
+                     : event.start.formatted(date: .omitted, time: .shortened))
+                    .font(.system(size: 9))
+                    .foregroundStyle(.gray)
+            }
+            Spacer(minLength: 0)
+        }
+    }
+
+    // MARK: Logic
+
+    private func resetToToday() {
+        let now = Date()
+        selectedDate = now
+        displayedMonth = now
+        loadMonth()
+    }
+
+    private func changeMonth(_ delta: Int) {
+        if let newMonth = calendar.date(byAdding: .month, value: delta, to: displayedMonth) {
+            displayedMonth = newMonth
+            loadMonth()
+        }
+    }
+
+    private func loadMonth() {
+        let month = displayedMonth
+        Task {
+            let events = await calendarManager.events(inMonthOf: month)
+            await MainActor.run { self.monthEvents = events }
+        }
+    }
+
+    private var orderedWeekdaySymbols: [String] {
+        let symbols = calendar.veryShortWeekdaySymbols // index 0 = Sunday
+        guard symbols.count == 7 else { return symbols }
+        let start = calendar.firstWeekday - 1
+        return Array(symbols[start...] + symbols[..<start])
+    }
+
+    private func monthWeeks() -> [[Date?]] {
+        guard let monthInterval = calendar.dateInterval(of: .month, for: displayedMonth) else {
+            return []
+        }
+        let firstDay = monthInterval.start
+        let daysInMonth = calendar.range(of: .day, in: .month, for: displayedMonth)?.count ?? 30
+        let firstWeekday = calendar.component(.weekday, from: firstDay)
+        let leading = (firstWeekday - calendar.firstWeekday + 7) % 7
+
+        var cells: [Date?] = Array(repeating: nil, count: leading)
+        for offset in 0..<daysInMonth {
+            cells.append(calendar.date(byAdding: .day, value: offset, to: firstDay))
+        }
+        while cells.count % 7 != 0 { cells.append(nil) }
+        return stride(from: 0, to: cells.count, by: 7).map { Array(cells[$0..<$0 + 7]) }
+    }
+
+    private func dayHasEvents(_ date: Date) -> Bool {
+        let startOfDay = calendar.startOfDay(for: date)
+        guard let endOfDay = calendar.date(byAdding: .day, value: 1, to: startOfDay) else {
+            return false
+        }
+        return monthEvents.contains { event in
+            if case .reminder(let completed) = event.type, completed, hideCompletedReminders {
+                return false
+            }
+            return event.start < endOfDay && event.end >= startOfDay
+        }
+    }
+
+    private func eventsForSelectedDay() -> [EventModel] {
+        let startOfDay = calendar.startOfDay(for: selectedDate)
+        guard let endOfDay = calendar.date(byAdding: .day, value: 1, to: startOfDay) else {
+            return []
+        }
+        return monthEvents
+            .filter { event in
+                if case .reminder(let completed) = event.type, completed, hideCompletedReminders {
+                    return false
+                }
+                return event.start < endOfDay && event.end >= startOfDay
+            }
+            .sorted { $0.start < $1.start }
+    }
+}

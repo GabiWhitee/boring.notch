@@ -347,4 +347,36 @@ extension Defaults.Keys {
     }
 
     static let didClearLegacyURLCacheV1 = Key<Bool>("didClearLegacyURLCache_v1", default: false)
+
+    // MARK: Pomodoro
+    static let enablePomodoro = Key<Bool>("enablePomodoro", default: true)
+    static let pomodoroWorkMinutes = Key<Int>("pomodoroWorkMinutes", default: 25)
+    static let pomodoroShortBreakMinutes = Key<Int>("pomodoroShortBreakMinutes", default: 5)
+    static let pomodoroLongBreakMinutes = Key<Int>("pomodoroLongBreakMinutes", default: 15)
+    static let pomodoroSessionsBeforeLongBreak = Key<Int>("pomodoroSessionsBeforeLongBreak", default: 4)
+    static let pomodoroAutoStartNext = Key<Bool>("pomodoroAutoStartNext", default: false)
+    static let pomodoroPlaySound = Key<Bool>("pomodoroPlaySound", default: true)
+
+    // MARK: Weather
+    static let showWeather = Key<Bool>("showWeather", default: false)
+    static let weatherCity = Key<String>("weatherCity", default: "")
+    static let weatherUseCelsius = Key<Bool>("weatherUseCelsius", default: true)
+
+    // MARK: Calendar tab
+    static let enableCalendarTab = Key<Bool>("enableCalendarTab", default: true)
+
+    // MARK: Dollar (Argentina)
+    static let showDollar = Key<Bool>("showDollar", default: false)
+    static let dollarType = Key<DollarType>("dollarType", default: .blue)
+
+    // MARK: Hardware tab
+    static let enableHardwareTab = Key<Bool>("enableHardwareTab", default: true)
+
+    // MARK: System stats
+    static let enableSystemStats = Key<Bool>("enableSystemStats", default: true)
+    static let systemShowCPU = Key<Bool>("systemShowCPU", default: true)
+    static let systemShowMemory = Key<Bool>("systemShowMemory", default: true)
+    static let systemShowNetwork = Key<Bool>("systemShowNetwork", default: true)
+    static let systemShowDisk = Key<Bool>("systemShowDisk", default: true)
+    static let systemShowBluetooth = Key<Bool>("systemShowBluetooth", default: true)
 }

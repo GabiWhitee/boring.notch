@@ -389,6 +389,36 @@
         }
       }
     },
+    "%@ · %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ · %2$@"
+          }
+        }
+      }
+    },
+    "%@ / %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ / %2$@"
+          }
+        }
+      }
+    },
+    "%@: $%lld" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@: $%2$lld"
+          }
+        }
+      }
+    },
     "%d%%" : {
       "localizations" : {
         "en" : {
@@ -420,6 +450,9 @@
           }
         }
       }
+    },
+    "%lld dBm" : {
+
     },
     "%lld%%" : {
       "localizations" : {
@@ -1210,6 +1243,15 @@
           }
         }
       }
+    },
+    "Adds a focus-timer tab next to Home and Shelf in the open notch." : {
+
+    },
+    "Adds a tab with battery health, Wi-Fi, uptime and per-core CPU." : {
+
+    },
+    "Adds a tab with live system stats to the open notch." : {
+
     },
     "Advanced" : {
       "localizations" : {
@@ -2207,6 +2249,9 @@
         }
       }
     },
+    "Auto-start next phase" : {
+
+    },
     "Automatic" : {
       "comment" : "A text label that appears in a picker view, allowing the user to select whether the mirror should be controlled by the device's camera or by a pre-set option.",
       "localizations" : {
@@ -3162,6 +3207,15 @@
         }
       }
     },
+    "Behavior" : {
+
+    },
+    "Bluetooth" : {
+
+    },
+    "Bluetooth battery" : {
+
+    },
     "Boring Notch" : {
       "localizations" : {
         "cs" : {
@@ -3997,6 +4051,9 @@
           }
         }
       }
+    },
+    "Celsius (°C)" : {
+
     },
     "Change media with horizontal gestures" : {
       "localizations" : {
@@ -5174,6 +5231,9 @@
         }
       }
     },
+    "City" : {
+
+    },
     "Clear slot" : {
       "localizations" : {
         "de" : {
@@ -5977,6 +6037,9 @@
         }
       }
     },
+    "Compra %@" : {
+
+    },
     "Continue" : {
       "localizations" : {
         "cs" : {
@@ -6252,6 +6315,12 @@
           }
         }
       }
+    },
+    "CPU cores" : {
+
+    },
+    "CPU usage" : {
+
     },
     "Currently selected: %@" : {
       "localizations" : {
@@ -7412,6 +7481,15 @@
         }
       }
     },
+    "Disk space" : {
+
+    },
+    "Displays current conditions next to the music player when the notch is open." : {
+
+    },
+    "Dólar" : {
+
+    },
     "Download" : {
       "localizations" : {
         "cs" : {
@@ -8019,6 +8097,12 @@
           }
         }
       }
+    },
+    "Durations" : {
+
+    },
+    "e.g. Buenos Aires" : {
+
     },
     "Edit layout" : {
       "localizations" : {
@@ -9406,6 +9490,9 @@
         }
       }
     },
+    "Fahrenheit (°F)" : {
+
+    },
     "Files dropped on the shelf will be shared via this service" : {
       "localizations" : {
         "de" : {
@@ -9617,6 +9704,9 @@
           }
         }
       }
+    },
+    "Focus" : {
+
     },
     "Full charge" : {
       "localizations" : {
@@ -10534,6 +10624,9 @@
           }
         }
       }
+    },
+    "Hardware" : {
+
     },
     "Hide all-day events" : {
       "localizations" : {
@@ -11628,6 +11721,9 @@
         }
       }
     },
+    "Indicators" : {
+
+    },
     "Inline" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -12257,6 +12353,12 @@
           }
         }
       }
+    },
+    "Location" : {
+
+    },
+    "Long break" : {
+
     },
     "Low" : {
       "localizations" : {
@@ -13831,6 +13933,9 @@
         }
       }
     },
+    "Memory usage" : {
+
+    },
     "Mic" : {
       "localizations" : {
         "cs" : {
@@ -14820,6 +14925,12 @@
         }
       }
     },
+    "Net" : {
+
+    },
+    "Network speed" : {
+
+    },
     "Never hide" : {
       "localizations" : {
         "cs" : {
@@ -15378,6 +15489,9 @@
           }
         }
       }
+    },
+    "Not connected" : {
+
     },
     "Not Now" : {
       "localizations" : {
@@ -17199,6 +17313,9 @@
         }
       }
     },
+    "Play sound when a phase ends" : {
+
+    },
     "Player tinting" : {
       "localizations" : {
         "de" : {
@@ -17362,6 +17479,9 @@
           }
         }
       }
+    },
+    "Pomodoro" : {
+
     },
     "Preferred display" : {
       "localizations" : {
@@ -17976,6 +18096,12 @@
         }
       }
     },
+    "Quote" : {
+
+    },
+    "Reading…" : {
+
+    },
     "Real-time audio waveform" : {
       "localizations" : {
         "fr" : {
@@ -18003,6 +18129,9 @@
           }
         }
       }
+    },
+    "Refresh now" : {
+
     },
     "Release name" : {
       "localizations" : {
@@ -19592,6 +19721,12 @@
         }
       }
     },
+    "Sessions before long break" : {
+
+    },
+    "Set a city in Settings" : {
+
+    },
     "Settings" : {
       "localizations" : {
         "cs" : {
@@ -20610,6 +20745,9 @@
         }
       }
     },
+    "Short break" : {
+
+    },
     "Shortcuts" : {
       "localizations" : {
         "cs" : {
@@ -21058,6 +21196,9 @@
         }
       }
     },
+    "Show calendar as a separate tab" : {
+
+    },
     "Show cool face animation while inactive" : {
       "localizations" : {
         "de" : {
@@ -21163,6 +21304,12 @@
           }
         }
       }
+    },
+    "Show dollar quote in Home" : {
+
+    },
+    "Show Hardware tab" : {
+
     },
     "Show lyrics below artist name" : {
       "localizations" : {
@@ -21945,6 +22092,9 @@
         }
       }
     },
+    "Show Pomodoro tab" : {
+
+    },
     "Show power status icons" : {
       "localizations" : {
         "cs" : {
@@ -22426,6 +22576,18 @@
           }
         }
       }
+    },
+    "Show System tab" : {
+
+    },
+    "Show weather in Home" : {
+
+    },
+    "Shows the Argentine dollar rate next to the music player when the notch is open. Source: dolarapi.com" : {
+
+    },
+    "Sin datos" : {
+
     },
     "Slider color" : {
       "localizations" : {
@@ -23707,6 +23869,17 @@
         }
       }
     },
+    "System Setting" : {
+      "comment" : "Week starts on: follow the macOS system setting",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "System Setting"
+          }
+        }
+      }
+    },
     "Time to Full Charge: %@" : {
       "localizations" : {
         "en" : {
@@ -24159,6 +24332,9 @@
         }
       }
     },
+    "Top RAM" : {
+
+    },
     "Two-finger swipe up on notch to close, two-finger swipe down on notch to open when **Open notch on hover** option is disabled" : {
       "localizations" : {
         "cs" : {
@@ -24264,6 +24440,9 @@
           }
         }
       }
+    },
+    "Type" : {
+
     },
     "Uninstall" : {
       "extractionState" : "stale",
@@ -24377,6 +24556,9 @@
           }
         }
       }
+    },
+    "Units" : {
+
     },
     "unmuted" : {
       "localizations" : {
@@ -24695,6 +24877,9 @@
           }
         }
       }
+    },
+    "Uptime" : {
+
     },
     "Use accent color" : {
       "localizations" : {
@@ -25574,6 +25759,9 @@
         }
       }
     },
+    "Weather" : {
+
+    },
     "Week starts on" : {
       "comment" : "Calendar setting: which weekday the week strip starts on",
       "localizations" : {
@@ -25581,17 +25769,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Week starts on"
-          }
-        }
-      }
-    },
-    "System Setting" : {
-      "comment" : "Week starts on: follow the macOS system setting (shown with the resolved day in parentheses)",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "System Setting"
           }
         }
       }

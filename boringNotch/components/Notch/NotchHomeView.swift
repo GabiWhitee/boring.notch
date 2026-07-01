@@ -456,6 +456,20 @@ struct NotchHomeView: View {
                     .transition(.opacity)
             }
 
+            // Hide the extra widgets while the camera preview is open so the
+            // notch doesn't get overcrowded (the camera is GPU-heavy on its own).
+            if Defaults[.showWeather] && !shouldShowCamera {
+                WeatherView()
+                    .frame(width: 150)
+                    .transition(.opacity)
+            }
+
+            if Defaults[.showDollar] && !shouldShowCamera {
+                DollarView()
+                    .frame(width: 140)
+                    .transition(.opacity)
+            }
+
             if shouldShowCamera {
                 CameraPreviewView(webcamManager: webcamManager)
                     .scaledToFit()

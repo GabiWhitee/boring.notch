@@ -353,6 +353,11 @@
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		112FB72F2CCF12CC0015238C /* private */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = private; sourceTree = "<group>"; };
+		AA01F00D0000000000000001 /* Pomodoro */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Pomodoro; sourceTree = "<group>"; };
+		AA01F00D0000000000000002 /* Weather */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Weather; sourceTree = "<group>"; };
+		AA01F00D0000000000000003 /* Dollar */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Dollar; sourceTree = "<group>"; };
+		AA01F00D0000000000000004 /* System */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = System; sourceTree = "<group>"; };
+		AA01F00D0000000000000005 /* Hardware */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Hardware; sourceTree = "<group>"; };
 		11F748502EC9AABA00F841DB /* BoringNotchXPCHelper */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (11F7485C2EC9AABA00F841DB /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = BoringNotchXPCHelper; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
@@ -679,6 +684,11 @@
 				14CEF41E2C5CAED400855D72 /* boringNotch.entitlements */,
 				14CEF41B2C5CAED400855D72 /* Preview Content */,
 				112FB72F2CCF12CC0015238C /* private */,
+				AA01F00D0000000000000001 /* Pomodoro */,
+				AA01F00D0000000000000002 /* Weather */,
+				AA01F00D0000000000000003 /* Dollar */,
+				AA01F00D0000000000000004 /* System */,
+				AA01F00D0000000000000005 /* Hardware */,
 				11CC44A12CEE614100C7244B /* BoringViewCoordinator.swift */,
 			);
 			path = boringNotch;
@@ -884,6 +894,11 @@
 			);
 			fileSystemSynchronizedGroups = (
 				112FB72F2CCF12CC0015238C /* private */,
+				AA01F00D0000000000000001 /* Pomodoro */,
+				AA01F00D0000000000000002 /* Weather */,
+				AA01F00D0000000000000003 /* Dollar */,
+				AA01F00D0000000000000004 /* System */,
+				AA01F00D0000000000000005 /* Hardware */,
 			);
 			name = boringNotch;
 			packageProductDependencies = (

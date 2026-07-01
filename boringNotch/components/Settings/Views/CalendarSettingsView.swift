@@ -23,6 +23,9 @@ struct CalendarSettings: View {
             Defaults.Toggle(key: .showCalendar) {
                 Text("Show calendar")
             }
+            Defaults.Toggle(key: .enableCalendarTab) {
+                Text("Show calendar as a separate tab")
+            }
             Defaults.Toggle(key: .hideCompletedReminders) {
                 Text("Hide completed reminders")
             }

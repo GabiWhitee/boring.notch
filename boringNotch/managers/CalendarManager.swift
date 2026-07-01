@@ -192,6 +192,19 @@ class CalendarManager: ObservableObject {
         )
         self.events = eventsResult
     }
+
+    /// Fetches every event in the calendar month containing `date`.
+    /// Used by the month-grid view; does not touch the published `events` (day view).
+    func events(inMonthOf date: Date) async -> [EventModel] {
+        guard let monthInterval = Calendar.current.dateInterval(of: .month, for: date) else {
+            return []
+        }
+        return await calendarService.events(
+            from: monthInterval.start,
+            to: monthInterval.end,
+            calendars: selectedCalendars.map { $0.id }
+        )
+    }
     
     func setReminderCompleted(reminderID: String, completed: Bool) async {
         await calendarService.setReminderCompleted(reminderID: reminderID, completed: completed)

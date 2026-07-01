@@ -100,6 +100,10 @@ class BoringViewCoordinator: ObservableObject {
     private var accessibilityObserver: Any?
     private var osdReplacementCancellable: AnyCancellable?
     private var boringShelfCancellable: AnyCancellable?
+    private var enablePomodoroCancellable: AnyCancellable?
+    private var enableSystemStatsCancellable: AnyCancellable?
+    private var enableCalendarTabCancellable: AnyCancellable?
+    private var enableHardwareTabCancellable: AnyCancellable?
     private var osdSourceCancellables: [AnyCancellable] = []
 
     private init() {
@@ -168,6 +172,46 @@ class BoringViewCoordinator: ObservableObject {
                 Task { @MainActor in
                     guard let self = self else { return }
                     if !change.newValue && self.currentView == .shelf {
+                        self.currentView = .home
+                    }
+                }
+            }
+
+        enablePomodoroCancellable = Defaults.publisher(.enablePomodoro)
+            .sink { [weak self] change in
+                Task { @MainActor in
+                    guard let self = self else { return }
+                    if !change.newValue && self.currentView == .pomodoro {
+                        self.currentView = .home
+                    }
+                }
+            }
+
+        enableSystemStatsCancellable = Defaults.publisher(.enableSystemStats)
+            .sink { [weak self] change in
+                Task { @MainActor in
+                    guard let self = self else { return }
+                    if !change.newValue && self.currentView == .system {
+                        self.currentView = .home
+                    }
+                }
+            }
+
+        enableCalendarTabCancellable = Defaults.publisher(.enableCalendarTab)
+            .sink { [weak self] change in
+                Task { @MainActor in
+                    guard let self = self else { return }
+                    if !change.newValue && self.currentView == .calendar {
+                        self.currentView = .home
+                    }
+                }
+            }
+
+        enableHardwareTabCancellable = Defaults.publisher(.enableHardwareTab)
+            .sink { [weak self] change in
+                Task { @MainActor in
+                    guard let self = self else { return }
+                    if !change.newValue && self.currentView == .hardware {
                         self.currentView = .home
                     }
                 }
